@@ -1,0 +1,35 @@
+﻿@page "/login"
+@rendermode InteractiveServer
+@inject NavigationManager UriHelper
+<h3>Login</h3>
+<div>
+    <input class="m-3" placeholder="Enter username" @bind="UserName" />
+</div>
+<div>
+    <input class="m-3" placeholder="Enter password" @bind="Password" />
+</div>
+<button class="btn btn-primary m-3" @onclick="login">Login</button>
+
+@code{
+    string UserName = string.Empty;
+    string Password = string.Empty;
+
+    public void login(){
+        if(LoginOk(UserName, Password))
+        {
+            UriHelper.NavigateTo("/counter");
+        }
+        else
+        {
+            UriHelper.NavigateTo("/weather");
+        }
+
+    }
+    private bool LoginOk(string username, string password){
+        if(username == "test" && password == "test")
+        {
+            return true;
+        }
+        return false;
+    }
+}
